@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/ari/Downloads/**)",
+      "Bash(unzip -l \"classfun website-handoff.zip\")",
+      "Bash(unzip -o \"classfun website-handoff.zip\" -d /tmp/classfun-handoff/)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\" --yes)",
+      "Bash(npm install *)",
+      "Bash(cp \"/tmp/classfun-handoff/classfun-website/project/uploads/Simulator Screenshot - iPhone 15 Pro - 2026-04-24 at 19.51.20.png\" /Users/ari/Documents/Claude/Projects/Classfun/classfun-website/public/screenshots/parent-home.png)",
+      "Bash(cp \"/tmp/classfun-handoff/classfun-website/project/uploads/Simulator Screenshot - iPhone 15 Pro - 2026-04-24 at 19.51.13.png\" /Users/ari/Documents/Claude/Projects/Classfun/classfun-website/public/screenshots/parent-fees.png)",
+      "Bash(cp \"/tmp/classfun-handoff/classfun-website/project/uploads/Simulator Screenshot - iPhone 15 Pro - 2026-04-24 at 19.51.07.png\" /Users/ari/Documents/Claude/Projects/Classfun/classfun-website/public/screenshots/parent-grades.png)",
+      "Bash(cp \"/tmp/classfun-handoff/classfun-website/project/uploads/Simulator Screenshot - iPhone 15 Pro - 2026-04-24 at 19.51.03.png\" /Users/ari/Documents/Claude/Projects/Classfun/classfun-website/public/screenshots/parent-reports.png)",
+      "Bash(cp \"/tmp/classfun-handoff/classfun-website/project/uploads/Simulator Screenshot - iPhone 15 Pro - 2026-04-24 at 16.13.27.png\" /Users/ari/Documents/Claude/Projects/Classfun/classfun-website/public/screenshots/school-dash.png)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/privacy)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/delete-account)"
+    ]
+  }
+}
