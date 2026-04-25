@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FadeUp, ScaleIn, StaggerChildren, StaggerItem } from "./AnimatedSection";
 
 const BLUE = "#3533C6";
@@ -23,10 +23,17 @@ const PRICING_FEATURES = [
   "Multi-child family accounts",
 ];
 
-export function Pricing() {
-  const [region, setRegion] = useState<"local" | "intl">("local");
+export function Pricing({ defaultRegion }: { defaultRegion?: "local" | "intl" }) {
+  const [region, setRegion] = useState<"local" | "intl">(defaultRegion ?? "intl");
   const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
   const [children, setChildren] = useState(25);
+
+  // Client-side timezone fallback when header detection isn't available (non-Vercel)
+  useEffect(() => {
+    if (defaultRegion) return;
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (tz === "Africa/Lagos") setRegion("local");
+  }, [defaultRegion]);
 
   const p = PRICING[region];
   const totalMonth =

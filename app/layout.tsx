@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: "Classfun — Where Learning Meets Safety",
   description:
     "Classfun connects schools, activity centres, and parents with real-time updates, safe pickup & drop-off tracking, and instant notifications — all in one delightful app.",
-  icons: { icon: "/favicon.ico" },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({

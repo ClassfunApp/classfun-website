@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
 import { StatsBar } from "./components/StatsBar";
@@ -10,7 +11,11 @@ import { Testimonials } from "./components/Testimonials";
 import { DownloadCTA } from "./components/DownloadCTA";
 import { Footer } from "./components/Footer";
 
-export default function Home() {
+export default async function Home() {
+  const headersList = await headers();
+  const country = headersList.get("x-vercel-ip-country") ?? "";
+  const defaultRegion: "local" | "intl" = country === "NG" ? "local" : "intl";
+
   return (
     <>
       <Nav />
@@ -20,7 +25,7 @@ export default function Home() {
       <ForSchools />
       <ForParents />
       <HowItWorks />
-      <Pricing />
+      <Pricing defaultRegion={defaultRegion} />
       <Testimonials />
       <DownloadCTA />
       <Footer />
