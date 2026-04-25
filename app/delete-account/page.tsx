@@ -20,6 +20,8 @@ export default function DeleteAccount() {
     confirm: false,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   function validate() {
     const e: Record<string, string> = {};
@@ -38,8 +40,27 @@ export default function DeleteAccount() {
     if (validate()) setStep("confirm");
   }
 
-  function handleConfirm() {
-    setStep("submitted");
+  async function handleConfirm() {
+    setSubmitting(true);
+    setSubmitError("");
+    try {
+      const res = await fetch("/api/delete-account", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          role: form.role,
+          reason: form.reason || undefined,
+        }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setStep("submitted");
+    } catch {
+      setSubmitError("Something went wrong. Please try again or email us directly.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   const inputStyle: React.CSSProperties = {
@@ -463,12 +484,18 @@ export default function DeleteAccount() {
                     within <strong>30 days</strong>. You will receive a
                     confirmation email at <strong>{form.email}</strong>.
                   </p>
+                  {submitError && (
+                    <p style={{ color: "#ef4444", fontSize: 14, marginBottom: 16 }}>
+                      {submitError}
+                    </p>
+                  )}
                   <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                     <button
                       onClick={handleConfirm}
+                      disabled={submitting}
                       style={{
                         flex: 1,
-                        background: "#dc2626",
+                        background: submitting ? "#9ca3af" : "#dc2626",
                         color: "#fff",
                         border: "none",
                         padding: "14px 24px",
@@ -476,20 +503,18 @@ export default function DeleteAccount() {
                         fontFamily: "var(--font-nunito), Nunito, sans-serif",
                         fontWeight: 800,
                         fontSize: 15,
-                        cursor: "pointer",
+                        cursor: submitting ? "not-allowed" : "pointer",
                         minWidth: 180,
                         transition: "all 0.2s",
                       }}
-                      onMouseEnter={(e) =>
-                        ((e.currentTarget as HTMLElement).style.background =
-                          "#b91c1c")
-                      }
-                      onMouseLeave={(e) =>
-                        ((e.currentTarget as HTMLElement).style.background =
-                          "#dc2626")
-                      }
+                      onMouseEnter={(e) => {
+                        if (!submitting) (e.currentTarget as HTMLElement).style.background = "#b91c1c";
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!submitting) (e.currentTarget as HTMLElement).style.background = "#dc2626";
+                      }}
                     >
-                      Yes, delete my account
+                      {submitting ? "Submitting…" : "Yes, delete my account"}
                     </button>
                     <button
                       onClick={() => setStep("form")}

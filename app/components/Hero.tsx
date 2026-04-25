@@ -151,10 +151,10 @@ export function Hero() {
             style={{ display: "flex", flexWrap: "wrap", gap: 14, marginBottom: 40 }}
           >
             <AppStoreBtn store="apple" href="https://apps.apple.com" />
-            <AppStoreBtn store="google" href="https://play.google.com" />
+            <AppStoreBtn store="google" href="https://play.google.com/store/apps/details?id=com.useclassfun.app" />
           </motion.div>
 
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.55, duration: 0.5 }}
@@ -180,7 +180,7 @@ export function Hero() {
                 {tr.label}
               </div>
             ))}
-          </motion.div>
+          </motion.div>*/}
         </motion.div>
 
         {/* Right — Phone */}

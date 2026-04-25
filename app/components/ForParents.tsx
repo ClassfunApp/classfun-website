@@ -140,7 +140,7 @@ export function ForParents() {
             }}
           >
             <AppStoreBtn store="apple" href="https://apps.apple.com" />
-            <AppStoreBtn store="google" href="https://play.google.com" />
+            <AppStoreBtn store="google" href="https://play.google.com/store/apps/details?id=com.useclassfun.app" />
           </div>
         </FadeIn>
       </div>

@@ -73,7 +73,7 @@ export function Footer() {
             </p>
             <div style={{ display: "flex", gap: 14, marginTop: 20, flexWrap: "wrap" }}>
               <AppStoreBtn store="apple" href="https://apps.apple.com" />
-              <AppStoreBtn store="google" href="https://play.google.com" />
+              <AppStoreBtn store="google" href="https://play.google.com/store/apps/details?id=com.useclassfun.app" />
             </div>
           </div>
           {footerCols.map((col) => (

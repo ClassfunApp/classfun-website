@@ -20,7 +20,7 @@ export default async function Home() {
     <>
       <Nav />
       <Hero />
-      <StatsBar />
+      {/* <StatsBar /> */}
       <Features />
       <ForSchools />
       <ForParents />
